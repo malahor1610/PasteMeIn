@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en"
+      th:replace="~{shell/layout :: layout(~{::section})}"
+      xmlns:th="http://www.thymeleaf.org">
+  <section class="w-75 align-self-center">
+    <div class="row mt-4">
+      <div class="col-xl-1"></div>
+      <div class="col-xl-10">
+        <div class="card mb-3 px-0">
+          <div class="card-body">
+            <div class="container">
+              <form class="row justify-content-end"
+                    th:action="@{'/paste?token=' + ${token}}"
+                    th:method="put"
+                    th:object="${input}">
+                <textarea class="form-control"
+                          id="past"
+                          rows="20"
+                          th:field="${input.text}"></textarea>
+                <button class="my-3 ms-3 col-auto btn btn-primary w-auto"
+                        th:if="${paste.editable}"
+                        type="submit">Save
+                </button>
+                <button class="my-3 ms-3 col-auto btn btn-danger w-auto"
+                        data-bs-target="#confirmDelete"
+                        data-bs-toggle="modal"
+                        type="button">Burn
+                </button>
+                <button class="my-3 ms-3 col-auto btn btn-secondary w-auto"
+                        id="copier"
+                        onclick="copyToClipboard()"
+                        type="button">
+                  <i class="bi bi-clipboard-plus-fill"></i>
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-1"></div>
+    </div>
+    <div aria-hidden="true"
+         class="modal fade"
+         id="confirmDelete"
+         tabindex="-1">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <div class="modal-header justify-content-center">
+            <h5 class="modal-title">Are You sure about that?</h5>
+          </div>
+          <div class="modal-body">
+            <form class="row justify-content-center"
+                  th:action="@{'/paste?token=' + ${token}}"
+                  th:method="delete">
+              <button class="me-3 col-auto btn btn-primary"
+                      type="submit">Yes
+              </button>
+              <button class="ms-3 col-auto btn btn-secondary"
+                      data-bs-dismiss="modal"
+                      type="button">No
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div th:insert="~{error :: error(message=${error})}"></div>
+  </section>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en"
+      th:replace="~{shell/layout :: layout(~{::section})}"
+      xmlns:th="http://www.thymeleaf.org">
+  <section class="w-75 align-self-center">
+    <h3 class="my-3 text-center"
+        th:text="'Share any text You want with anyone You choose'"></h3>
+    <div class="row mt-4">
+      <div class="col-xl-1"></div>
+      <div class="col-xl-10">
+        <div class="card mb-3 px-0">
+          <div class="card-body">
+            <div class="container">
+              <form class="row justify-content-end"
+                    th:action="@{'/paste'}"
+                    th:method="post"
+                    th:object="${input}">
+                <textarea class="form-control"
+                          name="text"
+                          rows="20"
+                          th:field="${input.text}"></textarea>
+                <input class="form-check-input align-self-center my-3 p-0"
+                       id="editable"
+                       th:field="${input.editable}"
+                       type="checkbox">
+                <label class="form-label my-3 me-3 col-auto w-auto align-content-center"
+                       for="editable">Allow editing
+                </label>
+                <input class="form-check-input align-self-center my-3 p-0"
+                       id="usePassword"
+                       onchange="changePasswordUsage()"
+                       th:field="${input.usePassword}"
+                       type="checkbox">
+                <label class="form-label my-3 col-auto w-auto align-content-center"
+                       for="usePassword">Use password
+                </label>
+                <input class="form-control my-3 me-3 col-auto w-auto"
+                       disabled
+                       id="password"
+                       th:field="${input.password}"
+                       type="text">
+                <label class="form-label my-3 col-auto w-auto align-content-center">Expires after:</label>
+                <input class="form-control my-3 me-3 col-auto w-auto"
+                       disabled
+                       id="expiryValue"
+                       th:field="${input.expiryValue}"
+                       type="number">
+                <select class="form-select my-3 me-3 col-auto w-auto"
+                        id="expiryUnit"
+                        onchange="changeExpiryUnit()"
+                        th:field="${input.expiryUnit}">
+                  <option th:each="option : ${units}"
+                          th:text="${option.description}"
+                          th:value="${option}">
+                  </option>
+                </select>
+                <button class="my-3 col-auto btn btn-primary w-auto"
+                        type="submit">Submit
+                </button>
+              </form>
+            </div>
+            <div class="container">
+              <a th:href="${link}"
+                 th:text="${link}"></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-1"></div>
+    </div>
+    <div th:insert="~{error :: error(message=${error})}"></div>
+  </section>
+</html>

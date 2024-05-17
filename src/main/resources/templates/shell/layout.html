@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en"
+      th:fragment="layout(content)"
+      xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <th:block th:insert="~{shell/headlinks.html :: headlinks}"></th:block>
+  </head>
+  <header>
+    <div class="container">
+      <a class="col"
+         th:href="@{/start}">
+        <i class="bi bi-house-fill text-secondary fs-2"></i>
+      </a>
+    </div>
+  </header>
+  <body class="d-flex flex-column min-vh-100 bg-light">
+    <div th:replace="${content}"></div>
+  </body>
+</html>

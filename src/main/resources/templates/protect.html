@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en"
+      th:replace="~{shell/layout :: layout(~{::section})}"
+      xmlns:th="http://www.thymeleaf.org">
+  <section class="w-75 align-self-center">
+    <h3 class="my-3 text-center"
+        th:text="'The content You want to display is password protected, please provide password to continue'"></h3>
+    <div class=" mb-3 mt-4">
+      <div class="card card-body container col-auto"
+           style="width: fit-content;">
+        <form class="row"
+              th:action="@{'/authorize?token=' + ${token}}"
+              th:method="post">
+          <label class="form-label my-3 col-auto w-auto align-content-center">Password:</label>
+          <input class="form-control my-3 me-3 col-auto w-auto"
+                 th:name="password"
+                 th:value="${password}"
+                 type="text">
+          <button class="my-3 me-3 col-auto btn btn-primary w-auto"
+                  type="submit">Submit
+          </button>
+        </form>
+      </div>
+    </div>
+    <div th:insert="~{error :: error(message=${error})}"></div>
+  </section>
+</html>
