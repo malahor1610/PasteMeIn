@@ -27,7 +27,7 @@ PasteMeIn implements only a few functionalities of the original [Pastebin](https
 Clone the repository
 
 ```bash
-git clone https://github.com/contentful/the-example-app.java.git
+git clone https://github.com/malahor1610/PasteMeIn.git
 ```
 To start the application, run the following
 
