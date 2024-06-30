@@ -19,7 +19,7 @@ public class RedirectHandler {
   public RedirectView validationError(
           RedirectAttributes attributes, InputData input, BindingResult result) {
     attributes.addFlashAttribute("input", input);
-    PasteError.error(attributes, result.getAllErrors().get(0).getDefaultMessage());
+    PasteError.error(attributes, result.getAllErrors().getFirst().getDefaultMessage());
     return new RedirectView("/start");
   }
 
