@@ -19,7 +19,7 @@ PasteMeIn implements only a few functionalities of the original [Pastebin](https
 
 ## Requirements
 
-- Java (JDK 17+)
+- Java (JDK 21)
 - Git
 
 ## Usage
